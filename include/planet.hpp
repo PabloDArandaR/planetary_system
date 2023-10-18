@@ -11,8 +11,9 @@ class Planet {
         float radius, mass;
         Eigen::Vector3d position, speed, acceleration;
         sf::Color color;
+        std::string name;
     public:
-        Planet(float radius, float mass, Eigen::Vector3d initial_speed, Eigen::Vector3d initial_position, sf::Color color);
+        Planet(float radius, float mass, Eigen::Vector3d initial_position, Eigen::Vector3d initial_speed, Eigen::Vector3d initial_acceleration, sf::Color color, std::string name);
 
         void update_acceleration(Eigen::Vector3d sum_F);
         void update_speed(float t, float t_0);
@@ -25,6 +26,7 @@ class Planet {
         float get_mass();
         float get_radius();
         sf::Color get_color();
+        std::string get_name();
 };
 
 #endif

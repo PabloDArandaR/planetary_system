@@ -53,6 +53,30 @@
         "bit": "cpp",
         "cwctype": "cpp",
         "deque": "cpp",
-        "shape": "cpp"
-    }
+        "shape": "cpp",
+        "cstdarg": "cpp",
+        "strstream": "cpp",
+        "bitset": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "forward_list": "cpp",
+        "unordered_set": "cpp",
+        "numeric": "cpp",
+        "iomanip": "cpp",
+        "numbers": "cpp",
+        "semaphore": "cpp",
+        "shared_mutex": "cpp",
+        "stop_token": "cpp",
+        "cfenv": "cpp",
+        "cinttypes": "cpp",
+        "typeindex": "cpp",
+        "variant": "cpp",
+        "eigen": "cpp",
+        "csignal": "cpp",
+        "any": "cpp",
+        "codecvt": "cpp",
+        "__nullptr": "cpp"
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "cmake.configureOnOpen": true
 }

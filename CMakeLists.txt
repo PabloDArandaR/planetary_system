@@ -1,24 +1,35 @@
 cmake_minimum_required(VERSION 3.10)
-project(tutorial VERSION 0.1)
+project(Planet VERSION 0.1)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+enable_testing()
 
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Debug
-    CACHE STRING "Choose the type of build (Debug or Release)" FORCE)
-endif()
-
+include_directories(src)
+include_directories(include)
+link_directories(src)
+link_directories(include)
+find_package(Eigen3 REQUIRED NO_MODULE)
+find_package(GTest REQUIRED)
 find_package(SFML 2.5
   COMPONENTS
     system window graphics network audio REQUIRED)
-find_package(Eigen3 REQUIRED NO_MODULE)
+find_package(yaml-cpp REQUIRED)
+find_package(jsoncpp REQUIRED)
         
-set(SOURCES src/main.cpp include/Planet.hpp include/forces.hpp include/math.hpp)
-add_executable(main src/main.cpp)
+message(STATUS "Building main app")
+set(SOURCES src/main.cpp src/forces.cpp src/planet_system.cpp src/planet.cpp src/simulation_scenario.cpp)
+set(HEADERS include/forces.cpp include/planet_system.cpp include/planet.cpp include/simulation_scenario.cpp)
+add_executable(main ${SOURCES})
+target_link_libraries (main Eigen3::Eigen sfml-graphics yaml-cpp jsoncpp)
 
-target_link_libraries (main Eigen3::Eigen)
-target_include_directories(main PRIVATE include)
-    
-target_link_libraries(main sfml-graphics)
-#install(TARGETS main DESTINATION bin)
+
+## TESTS 
+
+# message(STATUS "Building test cases")
+# set(COMMON_TEST_SOURCES include/planet.hpp include/forces.hpp include/simulation_scenario.hpp src/planet.cpp src/forces.cpp src/simulation_scenario.cpp)
+# add_executable(gravity_tests  tests/test_gravity.cc ${COMMON_TEST_SOURCES})
+# target_link_libraries(gravity_tests GTest::gtest_main sfml-graphics Eigen3::Eigen jsoncpp)
+# target_include_directories(gravity_tests PRIVATE include)
+# include(GoogleTest)
+# gtest_discover_tests(gravity_tests)
