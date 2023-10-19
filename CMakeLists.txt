@@ -5,23 +5,24 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 enable_testing()
 
-include_directories(src)
-include_directories(include)
-link_directories(src)
-link_directories(include)
 find_package(Eigen3 REQUIRED NO_MODULE)
 find_package(GTest REQUIRED)
-find_package(SFML 2.5
-  COMPONENTS
-    system window graphics network audio REQUIRED)
+find_package(SFML 2.5 COMPONENTS system window graphics network audio REQUIRED)
+find_package(Boost 1.40 COMPONENTS program_options REQUIRED )
 find_package(yaml-cpp REQUIRED)
 find_package(jsoncpp REQUIRED)
-        
-message(STATUS "Building main app")
+
+include_directories(src)
+include_directories(include)
+include_directories(${Boost_INCLUDE_DIR})
+link_directories(src)
+link_directories(include)
+
 set(SOURCES src/main.cpp src/forces.cpp src/planet_system.cpp src/planet.cpp src/simulation_scenario.cpp)
 set(HEADERS include/forces.cpp include/planet_system.cpp include/planet.cpp include/simulation_scenario.cpp)
+
 add_executable(main ${SOURCES})
-target_link_libraries (main Eigen3::Eigen sfml-graphics yaml-cpp jsoncpp)
+target_link_libraries (main Eigen3::Eigen sfml-graphics yaml-cpp jsoncpp ${Boost_LIBRARIES})
 
 
 ## TESTS 

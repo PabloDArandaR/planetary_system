@@ -1,6 +1,7 @@
+#include <fstream>
+#include <boost/program_options.hpp>
 #include <SFML/Graphics.hpp>
 #include <yaml-cpp/yaml.h>
-#include <fstream>
 #include "planet.hpp"
 #include "forces.hpp"
 #include "simulation_scenario.hpp"
@@ -19,8 +20,41 @@
 #define METADATA_FILENAME "metadata.yaml"
 #define SECONDS_IN_A_YEAR 31536000
 
-int main()
+int main(int argc, char *argv[])
 {
+    double timestep {60};
+    double duration {SECONDS_IN_A_YEAR};
+
+    boost::program_options::options_description desc("Allowed options");
+    desc.add_options()
+        ("help", "produce help message")
+        ("config_file", boost::program_options::value<std::string>(), "path to config file")
+        ("timestep", boost::program_options::value<double>(), "Timestep [s]. Default 60 [s]")
+        ("duration", boost::program_options::value<double>(), "Simulation time [s]. Default 31536000 [s] (one year).")
+        ("log_file", boost::program_options::value<std::string>(), "Logfile name. Default log/YEAR_MONTH_DAY_HOUR_MINUTE_SECOND.csv.");
+    
+    boost::program_options::variables_map vm;
+    boost::program_options::store(boost::program_options::parse_command_line(argc, argv, desc), vm);
+    boost::program_options::notify(vm);
+
+    if (vm.count("help")) {
+        std::cout << desc << std::endl;
+        return 1;
+    }
+    if (vm.count("config_file")){
+        // TODO
+    }
+    if (vm.count("timestep")){
+        timestep = vm["timestep"].as<double>();
+    }
+    if (vm.count("duration")){
+        duration = vm["duration"].as<double>();
+    }
+
+    std::cout << "Timestep is: " << timestep << std::endl;
+    std::cout << "Duration is: " << duration << std::endl;
+
+    return 1;
 
     // Define the Planets of the system
     Eigen::Vector3d pos {Eigen::Vector3d::Zero()}, vel {Eigen::Vector3d::Zero()}, acc {Eigen::Vector3d::Zero()};
@@ -46,14 +80,9 @@ int main()
     simulationScenario scenario = simulationScenario();
     scenario.set_system(system);
 
-    // Simulation parameters:
-    float dt {1.0};
-    double timestep {31536000/365};
-
     scenario.initialize_log();
     scenario.update_log();
-    u_long limit {100000*long(SECONDS_IN_A_YEAR)};
-    while (scenario.get_time() < limit){
+    while (scenario.get_time() < duration){
         scenario.simulate_timesteps(timestep);
         scenario.update_log();
         scenario.set_time(scenario.get_time() + timestep);
