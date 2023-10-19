@@ -10,7 +10,7 @@ def plotLogFile():
 
 def main():
     log_dir = os.path.join("log")
-    filename = os.path.join(log_dir, "2023_10_19_13_21_34.csv")
+    filename = os.path.join(log_dir, "2023_10_19_17_7_56.csv")
     data = pd.read_csv(filename, delimiter=',')
 
     n_planets = int((len(data.columns) - 1) / 9)

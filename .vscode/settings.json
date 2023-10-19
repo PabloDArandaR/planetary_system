@@ -75,7 +75,8 @@
         "csignal": "cpp",
         "any": "cpp",
         "codecvt": "cpp",
-        "__nullptr": "cpp"
+        "__nullptr": "cpp",
+        "*.ipp": "cpp"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "cmake.configureOnOpen": true

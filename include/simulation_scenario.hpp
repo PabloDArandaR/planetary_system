@@ -21,6 +21,7 @@ class simulationScenario {
 
         void set_system(PlanetSystem);
         void set_time(double);
+        void set_config_filename(std::string);
 
         PlanetSystem& get_system();
         double get_time();

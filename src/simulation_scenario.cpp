@@ -105,3 +105,7 @@ void simulationScenario::update_log(){
     this->log_file << "\n";
     this->log_file.close();
 }
+
+void simulationScenario::set_config_filename(std::string new_config_filename){
+    this->log_filename = new_config_filename;
+}
