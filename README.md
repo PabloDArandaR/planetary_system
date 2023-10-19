@@ -22,6 +22,7 @@ Config files contain the metadata for a system. This files has the following for
             "initial_position": [X, X, X],
             "initial_velocity": [X, X, X],
             "mass": X,
+            "radius": X,
             "color":{
                 "r": X,
                 "g": X,

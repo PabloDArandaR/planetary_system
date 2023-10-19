@@ -20,7 +20,7 @@ PlanetSystem aux::parse_config_file(std::string config_filename){
         Eigen::Vector3d acceleration = Eigen::Vector3d::Zero();
         position << array["initial_position"][0], array["initial_position"][1], array["initial_position"][2]; 
         velocity << array["initial_velocity"][0], array["initial_velocity"][1], array["initial_velocity"][2]; 
-        Planet* pl = new Planet(0.0, array["mass"], position, velocity, acceleration, array["name"]);
+        Planet* pl = new Planet(array["radius"], array["mass"], position, velocity, acceleration, array["name"]);
 
         output.addPlanet(pl);   
     }

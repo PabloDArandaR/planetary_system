@@ -5,6 +5,7 @@
             "initial_position": [0.0, 2.273921e11, 0.0],
             "initial_velocity": [-24000.0, 0.0, 0.0],
             "mass": 6.39e23,
+            "radius": 3389500,
             "color":{
                 "r": 255,
                 "g": 0,
@@ -17,6 +18,7 @@
             "initial_position": [0.0, -1.49598261e11, 0.0],
             "initial_velocity": [29780.0, 0.0, 0.0],
             "mass": 5.972e24,
+            "radius": 6478137,
             "color":{
                 "r": 0,
                 "g": 0,
@@ -29,6 +31,7 @@
             "initial_position": [0.0, 0.0, 0.0],
             "initial_velocity": [0.0, 0.0, 0.0],
             "mass": 1.989e30,
+            "radius": 695700000,
             "color":{
                 "r": 255,
                 "g": 255,
