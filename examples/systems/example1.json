@@ -1,0 +1,40 @@
+{
+    "bodies":[
+        {
+            "name": "Mars",
+            "initial_position": [0.0, 2.273921e11, 0.0],
+            "initial_velocity": [-24000.0, 0.0, 0.0],
+            "mass": 6.39e23,
+            "color":{
+                "r": 255,
+                "g": 0,
+                "b": 0,
+                "a": 255
+            }
+        },
+        {
+            "name": "Earth",
+            "initial_position": [0.0, -1.49598261e11, 0.0],
+            "initial_velocity": [29780.0, 0.0, 0.0],
+            "mass": 5.972e24,
+            "color":{
+                "r": 0,
+                "g": 0,
+                "b": 255,
+                "a": 255
+            }
+        },
+        {
+            "name": "Sun",
+            "initial_position": [0.0, 0.0, 0.0],
+            "initial_velocity": [0.0, 0.0, 0.0],
+            "mass": 1.989e30,
+            "color":{
+                "r": 255,
+                "g": 255,
+                "b": 0,
+                "a": 255
+            }
+        }
+    ]
+}

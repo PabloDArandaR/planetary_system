@@ -12,16 +12,13 @@ class PlanetSystem {
         PlanetSystem();
         PlanetSystem(int n_planets);
 
-        void addPlanet(Planet new_planet);
-
-        void generateJsonMetadata(std::string filename);
-        void writeLog(double timestamp);
+        void addPlanet(Planet* new_planet);
         
-        std::vector<Planet> get_planets();
+        std::vector<Planet*> get_planets();
         int get_number_of_planets();
 
     private:
-        std::vector<Planet> planet_system;
+        std::vector<Planet*> planet_system;
         std::string log_filename;
         int n_planets;
 

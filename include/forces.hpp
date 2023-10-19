@@ -6,5 +6,5 @@
 #include "planet.hpp"
 
 namespace forces {
-    Eigen::Vector3d gravity(Planet& in1, Planet& in2);
+    Eigen::Vector3d gravity(Planet* in1, Planet* in2);
 }

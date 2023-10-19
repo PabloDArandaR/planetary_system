@@ -9,16 +9,24 @@ class simulationScenario {
     private:
         PlanetSystem system;
         double time;
-        std::unordered_map<int, std::vector<Eigen::Vector3d>> forces_in_each_planet;
+        std::unordered_map<int, Eigen::Vector3d> forces_in_each_planet;
+        std::string log_filename;
+        std::ofstream log_file;
+
         void updateForces();
+        void updateKin(double&);
 
     public:
         simulationScenario();
 
-        void addSystem(PlanetSystem);
+        void set_system(PlanetSystem);
+        void set_time(double);
 
         PlanetSystem& get_system();
+        double get_time();
         
         void simulate_timesteps(double&);
-        double get_time();
+
+        void initialize_log();
+        void update_log();
 };

@@ -7,3 +7,28 @@ The purpose of this project consists of generating an app that allows to set up 
 * **Mass**: kilograms
 * **Distances**: meters
 * **Time**: seconds
+
+## System config file
+
+STILL TO BE INTEGRATED
+
+Config files contain the metadata for a system. This files has the following format:
+
+```
+{
+    "bodies":[
+        {
+            "name": "XXXXXXXX",
+            "initial_position": [X, X, X],
+            "initial_velocity": [X, X, X],
+            "mass": X,
+            "color":{
+                "r": X,
+                "g": X,
+                "b": X,
+                "a": X
+            }
+        },
+        ...
+}
+```

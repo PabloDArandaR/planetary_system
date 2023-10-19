@@ -27,36 +27,37 @@ int main()
 
     pos[0] = 0.0; pos[1] = R_ORBIT_MARS; pos[2] = 0.0;
     vel[0] = -V_ORBIT_MARS; vel[1] = 0.0; vel[2] = 0.0;
-    Planet mars = Planet(R_MARS, M_MARS, pos, vel, acc, sf::Color::Red, "Mars");
+    Planet mars = Planet(R_MARS, M_MARS, pos, vel, acc, "Mars");
 
     pos[0] = 0.0; pos[1] = -R_ORBIT_EARTH; pos[2] = 0.0;
     vel[0] = V_ORBIT_EARTH; vel[1] = 30e3; vel[2] = 0.0;
-    Planet earth = Planet(R_EARTH, M_EARTH, pos, vel, acc, sf::Color::Blue, "Earth");
+    Planet earth = Planet(R_EARTH, M_EARTH, pos, vel, acc, "Earth");
 
     pos[0] = 0.0; pos[1] = 0.0; pos[2] = 0.0;
     vel[0] = 0.0; vel[1] = 0.0; vel[2] = 0.0;
-    Planet sun = Planet(R_SUN, M_SUN, pos, vel, acc, sf::Color::Yellow, "Sun");
+    Planet sun = Planet(R_SUN, M_SUN, pos, vel, acc, "Sun");
 
 
     PlanetSystem system = PlanetSystem();
-    system.addPlanet(mars);
-    system.addPlanet(earth);
-    system.addPlanet(sun);
-
-    system.generateJsonMetadata(METADATA_FILENAME);
+    system.addPlanet(&mars);
+    system.addPlanet(&earth);
+    system.addPlanet(&sun);
 
     simulationScenario scenario = simulationScenario();
-    scenario.addSystem(system);
+    scenario.set_system(system);
 
     // Simulation parameters:
     float dt {1.0};
-    double timestep {60};
+    double timestep {31536000/365};
 
-    while (scenario.get_time() < SECONDS_IN_A_YEAR){
+    scenario.initialize_log();
+    scenario.update_log();
+    u_long limit {100000*long(SECONDS_IN_A_YEAR)};
+    while (scenario.get_time() < limit){
         scenario.simulate_timesteps(timestep);
+        scenario.update_log();
+        scenario.set_time(scenario.get_time() + timestep);
     }
-
-
 
     return 0;
 }
